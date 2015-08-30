@@ -24,9 +24,14 @@ public class Game implements Runnable {
     private GameState gameState = GameState.PLAYING;
     private int step = 0;
 
-    public Game() {
-        players.add(new HumanPlayer(Field.Cell.OccupationType.X));
-        players.add(new AIPlayer(Field.Cell.OccupationType.O));
+    public Game(final int whoStartsTheGame) {
+        if (whoStartsTheGame == 1) {
+            players.add(new HumanPlayer(Field.Cell.OccupationType.X));
+            players.add(new AIPlayer(Field.Cell.OccupationType.O));
+        } else {
+            players.add(new AIPlayer(Field.Cell.OccupationType.X));
+            players.add(new HumanPlayer(Field.Cell.OccupationType.O));
+        }
     }
 
     private void updateGameState() {

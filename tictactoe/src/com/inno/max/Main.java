@@ -22,7 +22,6 @@ public class Main {
         JPanel panel;
         GridLayout gridLayout = new GridLayout(3, 3, 5, 5);
 
-
         jFrame.setSize(new Dimension(300, 300));
         jFrame.add(panel = new JPanel());
 
@@ -50,7 +49,17 @@ public class Main {
             }
         }
 
-        new Thread(new Game()).start();
+        final Object[] options = {"Bot",  "Me"};
+        final int answer = JOptionPane.showOptionDialog(jFrame,
+                "Who starts the game?",
+                "A Silly Question",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[1]);
+
+        new Thread(new Game(answer)).start();
 
         jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
